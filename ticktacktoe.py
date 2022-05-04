@@ -68,7 +68,7 @@ def main():
             type=check_win()
             x=0
             o=0
-            if i%2==0:
+            if i%2==0 and type!=True:
                 print("Player one: ", end="")
                 x=input()
                 x=int(x)-1
@@ -79,7 +79,7 @@ def main():
                 else:
                     print("Try again: ", end="")
 
-            else:
+            elif i%2!=0 and type!=True:
                 print("Player two: ", end="")
                 o=input()
                 o=int(o)-1
