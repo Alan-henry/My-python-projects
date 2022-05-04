@@ -13,52 +13,59 @@ def bo():
 
 def check_win():
     i=0
-    while i<2:
-        if i==0:
-            a="x"
-        if i==1:
-            a="o"
-        
+    while i<=2:
+        i+=1
         #Diagonal
-        if board[0]==a and board[4]==a and board[8]==a:
-            print(a+" Wins")
-            return True
-        elif board[2]==a and board[4]==a and board[6]==a:
-            print(a+" Wins")
-            return True
+        if board[0] == board[4] and board[8]==board[4] and board[0]!=" ":
+            a=board[0]
+            type= True
+        elif board[2] == board[4] and board[6]==board[4] and board[2]!=" ":
+            a=board[2]
+            type= True
         #Horizontal
-        elif board[0]==a and board[1]==a and board[2]==a:
-            print(a+" Wins")
-            return True
-        elif board[3]==a and board[4]==a and board[5]==a:
-            print(a+" Wins")
-            return True
-        elif board[6]==a and board[7]==a and board[8]==a:
-            print(a+" Wins")
-            return True
+        elif board[0] == board[1] and board[2]==board[0] and board[0]!=" ":
+            a=board[0]
+            type= True
+        elif board[3] == board[4] and board[5]==board[4] and board[3]!=" ":
+            a=board[3]
+            type= True
+        elif board[6] == board[8] and board[8]==board[7] and board[6]!=" ":
+            a=board[6]
+            type= True
         #Vertical
-        elif board[0]==a and board[3]==a and board[6]==a:
-            print(a+" Wins")
-            return True
-        elif board[1]==a and board[4]==a and board[7]==a:
-            print(a+" Wins")
-            return True
-        elif board[2]==a and board[5]==a and board[8]==a:
-            print(a+" Wins")
-            return True
+        elif board[0] == board[3] and board[3]==board[6] and board[0]!=" ":
+            a=board[0]
+            type= True
+        elif board[1] == board[4] and board[7]==board[4] and board[1]!=" ":
+            a=board[1]
+            type= True
+        elif board[2] == board[5] and board[8]==board[5] and board[2]!=" ":
+            a=board[2]
+            type= True
 
         else:
-            return False
+            type= False
+        if type==True:
+            print(a+" Wins")
+        return type
+
+        
         
         
 def main():
+    
     print("1 for pvp 2 for pvc: ", end="")
     decision=input()
+    type=check_win()
     print()
     i=0
     #Against person
     if decision=="1":
-        while i<=8:
+        while i<=8 and type!=True:
+            if type==True:
+                check_win()
+                break
+            type=check_win()
             x=0
             o=0
             if i%2==0:
@@ -68,7 +75,7 @@ def main():
                 if board[int(x)]==" ":
                     board[int(x)]="x"
                     bo()
-                    i+=1
+                    i+=1      
                 else:
                     print("Try again: ", end="")
 
@@ -83,13 +90,12 @@ def main():
                 else:
                     print("Try again: ", end="")
 
-            if check_win()==True:
-                check_win()
-                break
-        if check_win==False:
+
+        if type==False:
             print("Draw")
 
     if decision=="2":
+        
         while i<=8:
             x=0
             o=0
